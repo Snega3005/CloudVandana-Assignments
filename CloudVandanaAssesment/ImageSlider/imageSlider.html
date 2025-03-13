@@ -1,0 +1,79 @@
+<!-- DOM Manipulation - Image Slider
+Create an image slider using JavaScript that:
+• Displays one image at a time.
+• Has Next and Previous buttons to navigate through images.
+• Uses an array of image URLs. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Slider design</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  </head>
+  <body> 
+    <div class="container">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <!-- Images  added dynamically using JS -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- Navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      // Image Array
+      const imageArray = [
+        "images/aston-martin.jpg",
+        "images/audi-rs-e-tron-gt.jpg",
+        "images/maserati-mc20.jpg",
+        "images/nio-et5.jpg"
+      ];
+
+      // Select Swiper Wrapper
+      const swiperWrapper = document.querySelector(".swiper-wrapper");
+
+      
+      imageArray.forEach((src) => {
+        const slide = document.createElement("div");
+        slide.classList.add("swiper-slide");
+
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Slider Image";
+
+        slide.appendChild(img);
+        swiperWrapper.appendChild(slide);
+      });
+
+      // Initialize Swiper
+      const swiper = new Swiper(".swiper", {
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+  </body>
+</html>
